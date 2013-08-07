@@ -24,7 +24,7 @@ class UserController extends BaseController {
     if($validator->fails()) {
       return array('result' => 'error', 'messages' => ($validator->messages()->toArray())); 
     } else {
-      if(Auth::attempt($user)) {
+      if(Auth::attempt($user, Input::get('remember_me'))) {
         return array('result' => 'success');
       } else {
         return array('result' => 'error', 'messages' => (array('auth_failed' => 'Invalid email/password.'))); 

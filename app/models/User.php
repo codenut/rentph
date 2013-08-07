@@ -9,6 +9,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   protected $hidden = array('password');
   protected $fillable = array('full_name', 'email', 'password');
 
+  public function properties() {
+    return $this->hasMany('Property'); 
+  }
+
   public function getAuthIdentifier() {
     return $this->getKey();
   }
@@ -24,7 +28,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   public static function validates($input) {
     $rules = array(
       'email' => 'required|email', 
-      'password' => 'required|between:4,8',
+      'password' => 'required',
       'password_confirmation' => 'required|between:4,8',
       'full_name' => 'required|min:6');
 
@@ -34,11 +38,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     if(array_key_exists('password_confirmation', $input)) {
-      $apply_rules['password'] = 'required|confirmed|between:4, 8'; 
-      $apply_rules['email'] = 'required|unique:users|email|between:4, 8'; 
+      $apply_rules['password'] = 'required|confirmed|between:4,8'; 
+      $apply_rules['email'] = 'required|unique:users|email'; 
     }
 
-    Log::info(json_encode($apply_rules)); 
     return Validator::make($input, $apply_rules); 
   }
 

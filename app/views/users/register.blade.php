@@ -1,4 +1,4 @@
-{{ Form::open(array('url' => 'users/create', "id" => "registerForm")) }}
+{{ Form::open(array('url' => 'users/create', "id" => "register-form")) }}
 <div class="col-lg-5 panel">
   <div class="panel-heading"><b>Register</b></div>
   <div class="form-group">
@@ -23,6 +23,7 @@
 </div>
 {{ Form::close() }}
 <script>
+  $("#error-message").hide();
   $(document).ready(function() {
     $("#create_user").click(function(e) {
       $("#create_user").button('loading');
@@ -30,7 +31,7 @@
       $.ajax({
         url: "/users/create",
         method: "POST", 
-        data: $("#registerForm").serialize(),
+        data: $("#register-form").serialize(),
         success: function(resp) {
           if(resp.result === 'error') {
             var messages = "";

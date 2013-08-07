@@ -1,5 +1,5 @@
-{{ Form::open(array('url' => '/users/authenticate', 'id' => 'signin-form')) }}
 <div id="signin-register">
+  {{ Form::open(array('url' => '/users/authenticate', 'id' => 'signin-form')) }}
   <div class="col-lg-5 panel">
     <div class="panel-heading"><b>Sign in</b></div>
     <div class="form-group">
@@ -12,16 +12,17 @@
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox"> Remember me
+        {{ Form::checkbox('remember_me', '') }} Remember me
       </label>
     </div>
     <div class="btn-group btn-group-justified">
       <a data-loading="Signing in...." id="submit-signin" href="#" class="btn btn-primary">Submit</a>
     </div>
   </div>
+  {{ Form::close() }}
 </div>
-{{ Form::close() }}
 <script>
+  $("#error-message").hide();
   $(document).ready(function() {
     $("#submit-signin").click(function(e) {
       $("#submit-signin").button('loading'); 
@@ -38,7 +39,7 @@
             }
             $("#messages").html(messages);
             $("#error-message").show();
-          } else {
+            } else {
             alert(resp['result']);       
           }
         },

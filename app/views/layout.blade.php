@@ -14,7 +14,7 @@
       </div>
       <div class="content">
         <div class="row">
-          @include('users/signin')
+          @include('properties/new')
         </div>
       </div>        
     </div>
