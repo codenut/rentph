@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <link rel="stylesheet" href="/css/app.css" />
-    <script type="text/javascript" src="/js/jquery.js" ></script>
+    {{ HTML::style('css/bootstrap.css') }}
+    {{ HTML::style('css/app.css') }}
+    {{ HTML::script('js/jquery.js' )}}
   </head>
   <body>
     @include('shared/header')
@@ -14,12 +14,12 @@
       </div>
       <div class="content">
         <div class="row">
-          @include('properties/new')
+          @yield('content')
         </div>
       </div>        
     </div>
   </body>
-  <script type="text/javascript" src="/js/bootstrap.js" ></script>
-  <script type="text/javascript" src="/js/respond.min.js" ></script>
-  <script type="text/javascript" src="/js/app.js" ></script>
+  {{ HTML::script('js/bootstrap.js') }}
+  {{ HTML::script('js/respond.min.js') }}
+  {{ HTML::script('js/app.js') }}
 </html>

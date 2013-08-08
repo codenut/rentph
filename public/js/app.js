@@ -1,11 +1,11 @@
 $(document).ready(function() {
   $("#register").click(function(e) {
-    $("#signin-register").load("/users/register"); 
+    $("#signin-register").load($(this).attr("data-url")); 
     e.preventDefault(); 
     return false;
   });
   $("#signin").click(function(e) {
-    $("#signin-register").load("/users/signin"); 
+    $("#signin-register").load($(this).attr("data-url")); 
     e.preventDefault(); 
     return false;
   });

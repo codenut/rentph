@@ -12,4 +12,5 @@
  */
 
 Route::controller('/users', 'UserController');
-Route::get('/', 'UserController@getIndex');
+Route::controller('/properties', 'PropertyController');
+Route::get('/', 'HomeController@getIndex');

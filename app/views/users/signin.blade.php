@@ -1,5 +1,5 @@
 <div id="signin-register">
-  {{ Form::open(array('url' => '/users/authenticate', 'id' => 'signin-form')) }}
+  {{ Form::open(array('action' => 'UserController@postAuthenticate', 'id' => 'signin-form')) }}
   <div class="col-lg-5 panel">
     <div class="panel-heading"><b>Sign in</b></div>
     <div class="form-group">
@@ -28,7 +28,7 @@
       $("#submit-signin").button('loading'); 
       $("#error-message").hide();
       $.ajax({
-        url: '/users/authenticate',
+        url: '{{ URL::action("UserController@postAuthenticate") }}',
         method: 'POST',
         data: $("#signin-form").serialize(),
         success: function(resp) {
