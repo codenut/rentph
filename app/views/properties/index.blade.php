@@ -1,18 +1,20 @@
+@extends('layout')
+@section('content')
 <div class='col-lg-9'>
   <ul class="list-group" >
-    @for($i = 0; $i < 5; $i++)
+    @foreach($properties as $property) 
     <li class="list-group-item">
     <div class="media">
       <a class="pull-left" href="#">
-        <img width="80" class="media-object" src="/img/user.jpg" />
+        {{ HTML::image('img/user.jpg', '', array('width' => '80')) }}
       </a>
       <div class="media-body">
-        <h4 class="media-heading">I am test</h4>
-        Abcde
+        <h4 class="media-heading">{{ $property-> title }}</h4>
+        <p> {{ $property->description }} </p>
       </div>
     </div>
     </li>
-    @endfor
+    @endforeach
   </ul>
   <ul class="pagination">
     <li><a href="#">&laquo;</a></li>
@@ -27,3 +29,4 @@
 <div class='col-lg-3 panel'>
   test
 </div>
+@stop

@@ -5,10 +5,10 @@
       <div class="nav-collapse collapse">
         <ul class="nav navbar-nav">
           <li>
-          <a href="#">Listings</a>
+          <a href="{{ URL::to('properties/index') }}">Listings</a>
           </li>
           <li>
-          <a href="{{ URL::action('PropertyController@getNew') }}">Post Property</a>
+          <a href="{{ URL::to('properties/new') }}">Post Property</a>
           </li>
         </ul>
       </div>

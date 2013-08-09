@@ -20,6 +20,5 @@
     </div>
   </body>
   {{ HTML::script('js/bootstrap.js') }}
-  {{ HTML::script('js/respond.min.js') }}
   {{ HTML::script('js/app.js') }}
 </html>

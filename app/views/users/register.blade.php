@@ -29,7 +29,7 @@
       $("#create_user").button('loading');
       $("#error-message").hide();
       $.ajax({
-        url: "/users/create",
+        url: "{{ URL::to('users/create') }}",
         method: "POST", 
         data: $("#register-form").serialize(),
         success: function(resp) {

@@ -28,7 +28,7 @@
       $("#submit-signin").button('loading'); 
       $("#error-message").hide();
       $.ajax({
-        url: '{{ URL::action("UserController@postAuthenticate") }}',
+        url: '{{ URL::to('users/authenticate') }}',
         method: 'POST',
         data: $("#signin-form").serialize(),
         success: function(resp) {

@@ -34,7 +34,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     $apply_rules = array();
     foreach($input as $key => $rule) {
-      $apply_rules[$key] = $rules[$key];
+      if(array_key_exists($key, $rules)) {
+        $apply_rules[$key] = $rules[$key];
+      }
     }
 
     if(array_key_exists('password_confirmation', $input)) {
