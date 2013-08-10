@@ -3,13 +3,18 @@
 class PropertyController extends BaseController {
 
   public function getIndex() {
-    $properties = Property::all();
-    Log::info(json_encode($properties));
+    $properties = Property::paginate(10);
     return View::make('properties/index', array('properties' => $properties)) ;
   }
 
   public function getNew() {
     return View::make('properties/new');
+  }
+
+  public function getShow($property_id) {
+    $property = Property::find($property_id);
+    Log::info("Property: " . $property);
+    return View::make('properties/show', array('property' => $property)); 
   }
   
   public function postCreate() {

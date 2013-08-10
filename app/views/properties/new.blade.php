@@ -37,7 +37,9 @@
     </div>
     <div class="col-lg-6 form-group" id='price_div'>
       <label>Price per night</label>
-      {{ Form::text('price', '', array('class' => 'form-control', 'id' => 'price_input')) }}
+      <div class="input-group">
+        <span class="input-group-addon">₱</span>{{ Form::text('price', '', array('class' => 'form-control', 'id' => 'price_input')) }}
+      </div>
     </div>
   </div>
   <br/>
@@ -76,27 +78,27 @@
 </div>
 {{ Form::close() }}
 <script>
-$(document).ready(function() {
-  $('#submit_form').click(function(e) {
-    $('span[class="help-block"]').remove();
-    $('div').removeClass('has-error');
-    $.ajax({
-      url: '{{ URL::to('properties/create') }}',
-      method: 'POST',
-      data: $('#create_properties').serialize(),
-      success: function(resp) {
-        if(resp['result'] == 'error') {
-          for(var key in resp['message']) {
-            var input_div = '#' + key + '_div';
-            $(input_div).addClass('has-error');
-            $(input_div).append('<span class="help-block">' + resp['message'][key] + '</span>');
+  $(document).ready(function() {
+    $('#submit_form').click(function(e) {
+      $('span[class="help-block"]').remove();
+      $('div').removeClass('has-error');
+      $.ajax({
+        url: '{{ URL::to('properties/create') }}',
+        method: 'POST',
+        data: $('#create_properties').serialize(),
+        success: function(resp) {
+          if(resp['result'] == 'error') {
+            for(var key in resp['message']) {
+              var input_div = '#' + key + '_div';
+              $(input_div).addClass('has-error');
+              $(input_div).append('<span class="help-block">' + resp['message'][key] + '</span>');
+            }
           }
         }
-      }
+      });
+      e.preventDefault();
+      return false;
     });
-    e.preventDefault();
-    return false;
-  });
-})
+  })
 </script>
 @stop

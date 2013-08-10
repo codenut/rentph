@@ -2,11 +2,11 @@
   {{ Form::open(array('action' => 'UserController@postAuthenticate', 'id' => 'signin-form')) }}
   <div class="col-lg-5 panel">
     <div class="panel-heading"><b>Sign in</b></div>
-    <div class="form-group">
+    <div class="form-group" id="email_div">
       <label>Email address</label>
       {{ Form::text("email", "", array("class" => "form-control", "placeholder" => "Email")) }}
     </div>
-    <div class="form-group">
+    <div class="form-group" id="password_div">
       <label>Password</label>
       {{ Form::password("password", array("class" => "form-control", "placeholder" => "Password")) }}
     </div>
@@ -26,20 +26,20 @@
   $(document).ready(function() {
     $("#submit-signin").click(function(e) {
       $("#submit-signin").button('loading'); 
-      $("#error-message").hide();
+      $('span[class="help-block"]').remove();
+      $('div').removeClass('has-error');
       $.ajax({
         url: '{{ URL::to('users/authenticate') }}',
         method: 'POST',
         data: $("#signin-form").serialize(),
         success: function(resp) {
           if(resp['result'] === 'error') {
-            var messages = ""; 
             for(var key in resp['messages']) {
-              messages += resp['messages'][key] + "</br>";
+              var input_div = '#' + key + '_div';
+              $(input_div).addClass('has-error');
+              $(input_div).append('<span class="help-block">' + resp['messages'][key] + '</span>');
             }
-            $("#messages").html(messages);
-            $("#error-message").show();
-            } else {
+          } else {
             alert(resp['result']);       
           }
         },
