@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
 class Property extends Eloquent {
   protected $fillable = array('title', 'description', 'user_id', 'property_type', 'accommodates', 
-    'price', 'country', 'street', 'city', 'zip_code');
+    'price', 'country', 'street', 'city', 'zip_code', 'image_dir');
 
   public function user() {
     return $this->belongsTo('User'); 
+  }
+
+  public function images() {
+    return $this->hasMany('Image');
   }
 
   public static function validates($input) {

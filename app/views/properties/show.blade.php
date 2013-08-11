@@ -10,6 +10,7 @@
       <div class="panel-footer">
       </div>
     </div>
+    {{ $property->images }}
     <div class="col-lg-12 panel">
       <div class="panel-heading"><b>Description</b></div>
       <div class="col-lg-8">

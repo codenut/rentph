@@ -17,6 +17,7 @@ class CreatePropertiesTable extends Migration {
       $table->string('street', 255);
       $table->string('city', 255);
       $table->string('zip_code', 16);
+      $table->string('image_dir', 64);
       $table->timestamps();
     });
   }

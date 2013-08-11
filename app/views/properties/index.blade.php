@@ -42,7 +42,7 @@
   </ul>
   {{ $properties->links(); }}
 </div>
-<div class='col-lg-3'>
+<div class='col-lg-3' style="padding-right: 0">
   <div class="panel">
     <div class="panel-heading"><b>Price per night</b></div>
     <div class="checkbox">

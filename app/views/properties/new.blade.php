@@ -1,7 +1,8 @@
 @extends('layout')
 @section('content')
 {{ Form::open(array('url' => 'properties/create', 'id' => 'create_properties')) }}
-<div class="col-lg-8 panel panel">
+<input type="hidden" id="image_id" name="image_dir" value="{{ sha1(time()) }}" />
+<div class="col-lg-7 panel panel">
   <div class="panel-heading"><b>List your space</b></div>
   <legend>Tell us about your place</legend>
   <div class="form-group" id="title_div">
@@ -77,6 +78,32 @@
   </div>
 </div>
 {{ Form::close() }}
+<div class="col-lg-5">
+  <div class="panel">
+    <div class="panel-heading"><b>Images</b></div>
+    <div id="image_dir_div">
+      {{ HTML::style('css/dropzone.css') }}
+      {{ HTML::script('js/dropzone.js') }}
+      {{ Form::open(array('url' => 'properties/upload', 'class' => 'dropzone', 'id' => 'upload-images', 'files' => true)) }}
+      {{ Form::close() }}
+    </div>
+    <script>
+      Dropzone.options.uploadImages = {
+        url: '{{ URL::to('properties/upload') }}/' + $('#image_id').val(),
+        maxFilesize: 10, // MB
+        //addRemoveLinks: true,
+        init: function() {
+          this.on('addedFile', function(file) {
+            alert(file);
+          }); 
+        },
+        /*accept: function(file, done) {
+          done(); 
+        }*/
+      };
+    </script>
+  </diV>
+</div>
 <script>
   $(document).ready(function() {
     $('#submit_form').click(function(e) {

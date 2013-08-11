@@ -39,7 +39,6 @@ class UserController extends BaseController {
       'password' => Input::get('password'),
       'password_confirmation' => Input::get('password_confirmation')
     );
-    Log::info(json_encode($user));
     $validator = User::validates($user);
     if($validator->fails()) {
       return array('result' => 'error', 'messages' => ($validator->messages()->toArray()));

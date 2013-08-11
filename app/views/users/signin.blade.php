@@ -2,6 +2,7 @@
   {{ Form::open(array('action' => 'UserController@postAuthenticate', 'id' => 'signin-form')) }}
   <div class="col-lg-5 panel">
     <div class="panel-heading"><b>Sign in</b></div>
+    <div id="auth_failed_div"></div>
     <div class="form-group" id="email_div">
       <label>Email address</label>
       {{ Form::text("email", "", array("class" => "form-control", "placeholder" => "Email")) }}
