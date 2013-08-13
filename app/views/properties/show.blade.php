@@ -1,16 +1,31 @@
 @extends('layout')
 @section('content')
+{{ HTML::style('css/skins/tango/skin.css') }}
+{{ HTML::script('js/jquery.jcarousel.js') }}
 <div class="col-lg-12 panel">
   <h3>&nbsp;{{ $property->title }}</h3>
   <p>&nbsp;&nbsp;{{ $property->property_type }} - {{ $property->city }}, {{ $property->country }} </p>
   <div class="col-lg-9" style="padding-left: 0; padding-bottom: 0">
     <div class="col-lg-12 panel">
       <div class="panel-heading"><b>Photos</b></div>
-      {{ HTML::image('img/hotel.jpg', '', array('class' => 'img-rounded', 'width' => '100%')) }}
+        <img src="{{ URL::to('properties/image/'. $property->id . '/0') }}" id="main-image" class="img-rounded" width="100%" />
       <div class="panel-footer">
+        <ul id="images_carousel" class="jcarousel-skin-tango" style="width: 100%">
+          @for($i = 0; $i < count($property->images); $i++)
+          <li><a href="#" onclick="return load_image({{ $property->id }}, {{ $i }})"><img src="{{ URL::to('properties/image/' . $property->id . '/' . $i) }}" width="100" /></a></li>
+          @endfor
+        </u>
       </div>
+      <script>
+        $(document).ready(function() {
+          $('#images_carousel').jcarousel({}); 
+        });
+        function load_image(property_id, index) {
+          $("#main-image").attr('src', '{{ URL::to("properties/image") }}/' + property_id + '/' + index + '/' + new Date().getTime());
+          return false; 
+        }
+      </script>
     </div>
-    {{ $property->images }}
     <div class="col-lg-12 panel">
       <div class="panel-heading"><b>Description</b></div>
       <div class="col-lg-8">

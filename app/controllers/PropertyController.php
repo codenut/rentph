@@ -3,8 +3,14 @@
 class PropertyController extends BaseController {
 
   public function getIndex() {
-    $properties = Property::paginate(10);
-    return View::make('properties/index', array('properties' => $properties)) ;
+    return View::make('properties/index');
+  }
+
+  public function getResults() {
+    $properties = Property::whereRaw("title LIKE '%" . Input::get('keyword') . "%'")->paginate(1);
+    $properties->setBaseUrl('results');
+    Log::info('Keyword: ' . json_encode(Input::all()) . json_encode($_GET));
+    return View::make('properties/properties', array('properties' => $properties));
   }
 
   public function getNew() {
@@ -70,10 +76,17 @@ class PropertyController extends BaseController {
             (new Image(array('file_name' => $image, 'property_id' => $property->id)))->save();
           }
         }
-        return array('result' => 'success');
+        return array('result' => 'success', 'id' => $property->id);
       }
     }
 
   }
+
+  public function getImage($property_id, $index) {
+    $property = Property::find($property_id); 
+    $file = base_path() . '/data/' . $property->image_dir . '/' . $property->images[$index]->file_name;
+    return Response::download($file, 200, array('content-type' => 'image/png'));
+  }
+
 }  
 

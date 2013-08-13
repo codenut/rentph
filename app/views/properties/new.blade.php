@@ -94,7 +94,7 @@
         //addRemoveLinks: true,
         init: function() {
           this.on('addedFile', function(file) {
-            alert(file);
+            //alert(file);
           }); 
         },
         /*accept: function(file, done) {
@@ -120,7 +120,9 @@
               $(input_div).addClass('has-error');
               $(input_div).append('<span class="help-block">' + resp['message'][key] + '</span>');
             }
-          }
+          } else {
+            window.location = "{{ URL::to('properties/show/') }}/" + resp['id'];
+          } 
         }
       });
       e.preventDefault();

@@ -14,11 +14,9 @@
         <button type="button" id="close-alert" class="close">&times;</button>
         <div id="messages"></div>
       </div>
-      <div class="content">
-        <div class="row">
-          @yield('content')
-        </div>
-      </div>        
+      <div class="row">
+        @yield('content')
+      </div>
     </div>
   </body>
   {{ HTML::script('js/bootstrap.js') }}
