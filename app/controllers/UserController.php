@@ -8,11 +8,16 @@ class UserController extends BaseController {
   }
 
   public function getRegister() {
-    return View::make('users/register'); 
+    return View::make('users/register', array('title' => 'Register')); 
   }
 
   public function getSignin() {
-    return View::make('users/signin'); 
+    return View::make('users/signin', array('title' => 'Sign in')); 
+  }
+
+  public function getSignout() {
+    Auth::logout();
+    return Redirect::to('/'); 
   }
 
   public function postAuthenticate() {
@@ -45,6 +50,7 @@ class UserController extends BaseController {
     } else {
       $user['password'] = Hash::make($user['password']);
       $user = User::create($user);
+      Auth::login($user);
       return array('result' => 'success');
     }
   }

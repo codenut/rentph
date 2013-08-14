@@ -1,11 +1,13 @@
 $(document).ready(function() {
   $("#register").click(function(e) {
-    $("#signin-register").load($(this).attr("data-url")); 
+    $("#modal-dialog").load($(this).attr("data-url")); 
+    $("#ajax-modal").modal('show');
     e.preventDefault(); 
     return false;
   });
   $("#signin").click(function(e) {
-    $("#signin-register").load($(this).attr("data-url")); 
+    $("#modal-dialog").load($(this).attr("data-url")); 
+    $("#ajax-modal").modal('show');
     e.preventDefault(); 
     return false;
   });

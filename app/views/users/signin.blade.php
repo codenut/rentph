@@ -1,26 +1,33 @@
-<div id="signin-register">
-  {{ Form::open(array('action' => 'UserController@postAuthenticate', 'id' => 'signin-form')) }}
-  <div class="col-lg-5 panel">
-    <div class="panel-heading"><b>Sign in</b></div>
-    <div id="auth_failed_div"></div>
-    <div class="form-group" id="email_div">
-      <label>Email address</label>
-      {{ Form::text("email", "", array("class" => "form-control", "placeholder" => "Email")) }}
+<div class="modal-dialog">
+  <div class="modal-content" id="modal-content">
+    {{ Form::open(array('action' => 'UserController@postAuthenticate', 'id' => 'signin-form')) }}
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">{{ $title }}</h4>
     </div>
-    <div class="form-group" id="password_div">
-      <label>Password</label>
-      {{ Form::password("password", array("class" => "form-control", "placeholder" => "Password")) }}
+    <div class="modal-body">
+      <div id="auth_failed_div"></div>
+      <div class="form-group" id="email_div">
+        <label>Email address</label>
+        {{ Form::text("email", "", array("class" => "form-control", "placeholder" => "Email")) }}
+      </div>
+      <div class="form-group" id="password_div">
+        <label>Password</label>
+        {{ Form::password("password", array("class" => "form-control", "placeholder" => "Password")) }}
+      </div>
+      <div class="checkbox">
+        <label>
+          {{ Form::checkbox('remember_me', '') }} Remember me
+        </label>
+      </div>
     </div>
-    <div class="checkbox">
-      <label>
-        {{ Form::checkbox('remember_me', '') }} Remember me
-      </label>
-    </div>
-    <div class="btn-group btn-group-justified">
-      <a data-loading="Signing in...." id="submit-signin" href="#" class="btn btn-primary">Submit</a>
+    {{ Form::close() }}
+    <div class="modal-footer">
+      <div class="btn-group btn-group-justified">
+        <a data-loading="Signing in...." id="submit-signin" href="#" class="btn btn-primary">Submit</a>
+      </div>
     </div>
   </div>
-  {{ Form::close() }}
 </div>
 <script>
   $("#error-message").hide();
@@ -41,7 +48,7 @@
               $(input_div).append('<span class="help-block">' + resp['messages'][key] + '</span>');
             }
           } else {
-            alert(resp['result']);       
+            window.location = "{{ URL::to('/') }}";
           }
         },
         complete: function() {

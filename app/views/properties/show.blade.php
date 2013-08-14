@@ -8,7 +8,9 @@
   <div class="col-lg-9" style="padding-left: 0; padding-bottom: 0">
     <div class="col-lg-12 panel">
       <div class="panel-heading"><b>Photos</b></div>
-        <img src="{{ URL::to('properties/image/'. $property->id . '/0') }}" id="main-image" class="img-rounded" width="100%" />
+      <div style="margin:auto; width: 100%; text-align: center">
+        <img src="{{ URL::to('properties/image/'. $property->id . '/0') }}" id="main-image" class="img-rounded" width="400" />
+      </div>
       <div class="panel-footer">
         <ul id="images_carousel" class="jcarousel-skin-tango" style="width: 100%">
           @for($i = 0; $i < count($property->images); $i++)

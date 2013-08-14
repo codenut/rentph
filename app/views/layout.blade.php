@@ -12,10 +12,16 @@
     <div class="container main-content">
       <div id="error-message" class="alert alert-danger fade in" style="display: none">
         <button type="button" id="close-alert" class="close">&times;</button>
-        <div id="messages"></div>
+        <div id="messages">
+        </div>
       </div>
       <div class="row">
         @yield('content')
+      </div>
+    </div>
+    <div class="modal fade" id="ajax-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div id="modal-dialog">
+
       </div>
     </div>
   </body>

@@ -18,8 +18,8 @@
   </div>
 </div>
 <div class='col-lg-9' style="padding-left: 0px;">
-<div id="results">
-</div>
+  <div id="results">
+  </div>
 </div>
 <script>
   function load_results(url) {

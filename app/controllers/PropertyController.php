@@ -1,6 +1,10 @@
 <?php
 
 class PropertyController extends BaseController {
+  public function __construct() {
+    Log::info('Action: ' . Route::currentRouteName());
+
+  }
 
   public function getIndex() {
     return View::make('properties/index');
