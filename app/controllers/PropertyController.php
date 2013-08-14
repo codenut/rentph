@@ -2,8 +2,7 @@
 
 class PropertyController extends BaseController {
   public function __construct() {
-    Log::info('Action: ' . Route::currentRouteName());
-
+    $this->beforeFilter('auth', array('only' => array('getNew'))); 
   }
 
   public function getIndex() {

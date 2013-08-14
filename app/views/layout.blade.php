@@ -10,11 +10,14 @@
   <body>
     @include('shared/header')
     <div class="container main-content">
-      <div id="error-message" class="alert alert-danger fade in" style="display: none">
+      @if(isset($errors) && $errors->has('auth_failed'))
+      <div id="error-message" class="alert alert-danger fade in" >
         <button type="button" id="close-alert" class="close">&times;</button>
         <div id="messages">
+          {{ $errors->first('auth_failed') }}
         </div>
       </div>
+      @endif
       <div class="row">
         @yield('content')
       </div>
