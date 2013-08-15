@@ -21,10 +21,7 @@ class UserController extends BaseController {
   }
 
   public function postAuthenticate() {
-    $user = array(
-      'email' => Input::get('email'),
-      'password' => Input::get('password') 
-    );
+    $user = Input::all();
     $validator = User::validates($user);
     if($validator->fails()) {
       return array('result' => 'error', 'messages' => ($validator->messages()->toArray())); 
@@ -38,12 +35,7 @@ class UserController extends BaseController {
   }
 
   public function postCreate() {
-    $user = array(
-      'email' => Input::get('email'),
-      'full_name' => Input::get('full_name'),
-      'password' => Input::get('password'),
-      'password_confirmation' => Input::get('password_confirmation')
-    );
+    $user = Input::all();
     $validator = User::validates($user);
     if($validator->fails()) {
       return array('result' => 'error', 'messages' => ($validator->messages()->toArray()));

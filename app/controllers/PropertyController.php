@@ -38,6 +38,7 @@ class PropertyController extends BaseController {
       return Response::make($validation->errors->first(), 400); 
     }*/
 
+    // Using php raw file laravel 4 file doesnt work
     $file = $_FILES['file'];//Input::file('image');
     $directory = base_path() . '/data/' . $dir . '/';
     if(!is_dir($directory)) {
@@ -45,7 +46,6 @@ class PropertyController extends BaseController {
     }
     $filename = $directory . sha1(time().time()) . '.' . File::extension($file['name']);
 
-    //$upload_done = Input::upload('image', $directory, $filename);
     Log::info('File name: ' . $filename);
     $upload_done = move_uploaded_file($file['tmp_name'], $filename);
 
