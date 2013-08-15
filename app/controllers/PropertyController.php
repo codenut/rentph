@@ -38,9 +38,6 @@ class PropertyController extends BaseController {
       return Response::make($validation->errors->first(), 400); 
     }*/
 
-    Log::info('$_FILES' . json_encode($_FILES)); 
-    Log::info('Input::file("image"): ' . json_encode($input) . ' ' . Input::hasFile('image') . ' ');
-
     $file = $_FILES['file'];//Input::file('image');
     $directory = base_path() . '/data/' . $dir . '/';
     if(!is_dir($directory)) {
