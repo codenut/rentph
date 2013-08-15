@@ -27,4 +27,4 @@ After that you have to do these commands:
     //Start the development web server
     $ php artisan serve
 
-Then open this url in your browser (http://localhost:8000)
+Then open this url in your browser [http://localhost:8000](http://localhost:8000)
